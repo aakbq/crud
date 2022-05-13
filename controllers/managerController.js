@@ -1,5 +1,5 @@
 const bcrypt = require("bcryptjs")
-const Manager = require("../models/managerModel")
+const Manager = require("../models/managerModel");
 const Seller = require("../models/sellerModel");
 const Customer = require("../models/userModel");
 const path = require("path");
