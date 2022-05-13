@@ -1,0 +1,554 @@
+body {
+    margin: 0;
+    font-family: "Nunito", sans-serif;
+    font-size: 16px;
+    color: #151d28;
+    background-color: #f9fbff;
+}
+:root{
+    --main-color:#d3ad7f;
+    --black:#13131a;
+    --bg:#010103;
+    --border:.1rem solid rgba(255,255,255,.3);
+}
+
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    padding: 0;
+}
+
+/*===============HEADER START================*/
+.header {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    background-color: #415167;
+}
+
+.heading {
+    width: 100%;
+    max-width: 430px;
+    margin: 120px auto 50px auto;
+    text-align: center;
+    font-family: Montserrat;
+}
+
+.title {
+    color: #415167;
+    font-weight: 700;
+}
+
+.subtitle {
+    font-weight: 700;
+    color: #fafafa;
+    background-color: #d3ad7f;
+}
+/*===============WORKS START===============*/
+.work__item {
+    background: #f9fbff;
+}
+
+.works {
+    padding: 50px 50px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-gap: 30px;
+    flex-wrap: wrap;
+    background: #415167;
+    border-radius: 10px;
+}
+
+.work__1 {
+    display: flex;
+    padding-left: 5px;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+    border: 5px solid rgba(0, 0, 0, 0.3);
+    border-color: #232c38;
+    grid-column: 1/2;
+    grid-row: 1/2;
+    background-color: #f9fbff;
+}
+
+.work__2 {
+    display: flex;
+    padding-left: 5px;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+    border: 5px solid rgba(0, 0, 0, 0.3);
+    border-color: #232c38;
+    grid-column: 2/2;
+    grid-row: 1/2;
+    background-color: #f9fbff;
+}
+
+.work__3 {
+    display: flex;
+    padding-left: 5px;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+    border: 5px solid rgba(0, 0, 0, 0.3);
+    border-color: #232c38;
+    grid-column: 1/2;
+    grid-row: 2/2;
+    background-color: #f9fbff;
+}
+
+.work__4 {
+    display: flex;
+    padding-left: 5px;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+    border: 5px solid rgba(0, 0, 0, 0.3);
+    border-color: #232c38;
+    grid-column: 2/2;
+    grid-row: 2/2;
+    background-color: #f9fbff;
+}
+
+.work__price {
+    padding-top: 42px;
+    font-family: Nunito;
+    font-weight: 600;
+    font-size: 20px;
+    color: #c7a17a;
+}
+
+.work__title {
+    padding-top: 8px;
+    font-family: Nunito;
+    font-weight: bold;
+    font-size: 24px;
+    color: #232c38;
+}
+
+.work__subtitle {
+    padding-top: 24px;
+    padding-bottom: 18px;
+    font-family: Nunito;
+    font-weight: 300;
+    font-size: 16px;
+    color: #151d28;
+}
+
+.work__buy {
+    font-family: Nunito;
+    font-weight: bold;
+    font-size: 16px;
+    text-align: center;
+    color: #f9fbff;
+    display: inline-block;
+    text-decoration: none;
+    padding: 12px 34px;
+    background: #c7a17a;
+    border-radius: 50px;
+}
+
+.work__details {
+    font-family: Nunito;
+    font-weight: bold;
+    font-size: 16px;
+    color: #415167;
+    display: inline-block;
+    text-decoration: none;
+}
+
+
+
+@media screen and (max-width: 991px){
+  .works {
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    grid-gap: 0;
+  }
+
+  .work__1 {
+    grid-column: 1/1;
+    grid-row: 1/4;
+  }
+
+  .work__2 {
+    grid-column: 1/1;
+    grid-row: 2/4;
+  }
+
+  .work__3 {
+    grid-column: 1/1;
+    grid-row: 3/4;
+  }
+
+  .work__4 {
+    position: relative;
+    top: -5px;
+    grid-column: 1/1;
+    grid-row: 4/4;
+  }
+}
+
+@media screen and (max-width: 771px){
+  .work__2 .btn:nth-last-child(3n) {
+    padding-bottom: 50px;
+  }
+}
+
+@media screen and (max-width: 576px){
+  .works {
+    padding: 20px 20px;
+  }
+
+  .heading {
+    max-width: 250px;
+  }
+
+  .work__item {
+    padding-left: 0px;
+  }
+
+  .work__item img {
+    height: 150px;
+  }
+
+  .work__title {
+    padding-top: 2px;
+    font-size: 16px;
+    width: 100%;
+    max-width: 80px;
+  }
+
+  .work__subtitle {
+    display: none;
+  }
+
+  .work__price {
+    font-size: 16px;
+    padding-top: 10px;
+  }
+
+  .btn {
+    font-size: 12px !important;
+
+  }
+}
+
+/*===============WORKS END===============*/
+/*===============GIFTSET START===============*/
+.giftset__item {
+    display: flex;
+}
+
+.giftset__bio__both {
+    display: flex;
+}
+
+.work__bio__2 {
+    padding: 0 50px;
+}
+
+.work__bio__title {
+    font-weight: 300;
+    font-size: 16px;
+    color: #415167;
+    opacity: 0.7;
+}
+
+.work__bio__subtitle {
+    font-weight: 300;
+    font-size: 16px;
+    color: #415167;
+}
+
+.main {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.wrap {
+  margin: 2rem;
+  transform-style: preserve-3d;
+  transform: perspective(100rem);
+  cursor: pointer;
+}
+
+.container--img {
+  --rX: 0;
+  --rY: 0;
+  --bX: 50%;
+  --bY: 80%;
+
+  width: 320px;
+  height: 350px;
+  border: 1px solid var(--background-color);
+  border-radius: 1.6rem;
+  padding: 4rem;
+
+  display: flex;
+  align-items: flex-end;
+
+  position: relative;
+  transform: rotateX(calc(var(--rX) * 1deg)) rotateY(calc(var(--rY) * 1deg));
+
+  background: linear-gradient(hsla(0, 0%, 100%, .1), hsla(0, 0%, 100%, .1)), url("https://i.pinimg.com/originals/b7/02/77/b70277e5adbf075ba6a77feab79cd835.jpg");
+  background-position: var(--bX) var(--bY);
+  background-size: 40rem auto;
+  box-shadow: 0 0 3rem .5rem hsla(0, 0%, 0%, .2);
+
+  transition: transform .6s 1s;
+}
+
+.container--img::before,
+.container--img::after {
+  content: "";
+
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid #fff;
+
+  position: absolute;
+  z-index: 2;
+
+  opacity: .3;
+  transition: .3s;
+}
+
+.container--img::before {
+  top: 2rem;
+  right: 2rem;
+
+  border-bottom-width: 0;
+  border-left-width: 0;
+}
+
+.container--img::after {
+  bottom: 2rem;
+  left: 2rem;
+
+  border-top-width: 0;
+  border-right-width: 0;
+}
+
+.container--active {
+  transition: none;
+}
+
+.container--2 {
+  filter: hue-rotate(80deg) saturate(140%);
+}
+
+.container--3 {
+  filter: hue-rotate(160deg) saturate(140%);
+}
+
+.wrap:hover .container--img::before,
+.wrap:hover .container--img::after {
+  width: calc(100% - 4rem);
+  height: calc(100% - 4rem);
+}
+
+.abs-site-link {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  color: hsla(0, 0%, 0%, .6);
+  font-size: 1.6rem;
+}
+/*===============GIFTSET END===============*/
+/*===============COMBO START===================*/
+.box-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 50px 0;
+}
+
+.box-container .box {
+    flex: 1 1 349px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+    border: 5px solid rgba(0, 0, 0, 0.3);
+}
+
+.box-container .box .image {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    position: absolute;
+}
+
+.box-container .box .content {
+    text-align: center;
+    background: #f9fbff;
+    padding: 30px;
+    top: -100%;
+    left: 0;
+}
+
+.box-container .box:hover .content {
+    top: 0;
+}
+
+.box-container .box:hover:nth-child(odd) .image{ /* nth-child() - псевдокласс, который помогает выбрать определенные элементы*/
+    transform: translateY(100%);
+}
+/*===============COMBO END===================*/
+/*===============FOOTER START===============*/
+.footer {
+    background: #415167;
+    text-align: center;
+}
+
+.footer .links {
+    padding-top: 20px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.footer .links a {
+    padding: 1.6px 8px;
+    color: #f9f9f9;
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    border-radius: 15px;
+}
+
+.footer .links a:hover {
+    background: #c7a17a;
+    transition: all linear 0.3s;
+}
+
+.credit {
+    font-size: 14px;
+    color: #f9fbff;
+    font-weight: 300;  
+    padding: 24px;
+    text-transform: uppercase;
+}
+
+.credit span {
+    color: #c7a17a;
+    font-weight: 700;
+}
+/*===============FOOTER END===============*/
+/*===============modal start ===============*/
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  /* Modal Content/Box */
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+  }
+  
+  /* The Close Button */
+  .close{ 
+    position: absolute; 
+    top: 30px; 
+    right: 30px; 
+    cursor: pointer; 
+ 
+}
+/* Add Animation */
+@keyframes animatetop {
+  from {top: -300px; opacity: 0}
+  to {top: 0; opacity: 1}
+}
+  
+
+.row {
+    display: -ms-flexbox; /* IE10 */
+    display: flex;
+    -ms-flex-wrap: wrap; /* IE10 */
+    flex-wrap: wrap;
+    margin: 0 -16px;
+  }
+  
+  .col-25 {
+    -ms-flex: 25%; /* IE10 */
+    flex: 25%;
+  }
+  
+  .col-50 {
+    -ms-flex: 50%; /* IE10 */
+    flex: 50%;
+  }
+  
+  .col-75 {
+    -ms-flex: 75%; /* IE10 */
+    flex: 75%;
+  }
+  
+  .col-25,
+  .col-50,
+  .col-75 {
+    padding: 0 16px;
+  }
+    input[type=text] {
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+  
+  label {
+    margin-bottom: 10px;
+    display: block;
+  }
+  
+  .icon-container {
+    margin-bottom: 20px;
+    padding: 7px 0;
+    font-size: 24px;
+  }
+  
+  .btn-1 {
+    background-color: #232c38;
+    color: white;
+    padding: 12px;
+    margin: 10px 0;
+    border: none;
+    width: 100%;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 17px;
+  }
+  
+  .btn-1:hover {
+    background-color: #c7a17a;
+  }
+  
+
+  
+  /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other (and change the direction - make the "cart" column go on top) */
+  @media (max-width: 800px) {
+    .row {
+      flex-direction: column-reverse;
+    }
+    .col-25 {
+      margin-bottom: 20px;
+    }
+  }
+/*===============modal END===============*/
