@@ -1,0 +1,42 @@
+body {
+    margin: 0;
+    font-family: "Nunito", sans-serif;
+    font-size: 16px;
+    color: #151d28;
+    background-color: #f9fbff;
+    overflow-x: hidden; /*Все, что выходит за рамки экрана убирается, в нашем случае по оси-Х*/
+
+}
+
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+}
+
+/*===============HEADER START================*/
+.header {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    background-color: #415167;
+}
+
+.subtitle {
+    margin-top: 100px;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    text-align: center;
+}
+
+.title {
+    font-family: Montserrat;
+    font-weight: 900;
+    font-size: 30px;
+    line-height: 34px;
+    text-align: center;
+    padding-bottom: 25px;
+}
