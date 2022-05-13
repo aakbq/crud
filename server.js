@@ -28,6 +28,7 @@ app.use(
 ) //stores the session
 
 app.use('/manager', require("./routes/managerRoutes"))
+app.use('/user', require("./routes/userRoutes"))
 app.use('/seller', require("./routes/sellerRoutes"))
 app.get('/landing', (req, res) =>
     res.render(path.resolve('./views/landing.ejs'))

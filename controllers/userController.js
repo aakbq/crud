@@ -1,85 +1,77 @@
-const UserModel = require('../model/user')
+const bcrypt = require("bcryptjs");
+const Manager = require("../models/managerModel");
+const Seller = require("../models/sellerModel");
+const Customer = require("../models/userModel");
 const path = require("path");
 
-// Create and Save a new user
-exports.create = async (req, res) => {
-    console.log(req.body)
-    if (!req.body.email && !req.body.firstName && !req.body.lastName && !req.body.password) {
-        res.status(400).send({ message: "Content can not be empty!" });
+exports.login_get = async (req, res) => {
+    const error = req.session.error;
+    delete req.session.error;
+    res.render(path.resolve('./views/userPage/login.ejs'), { err: error });
+};
+
+exports.login_post = async (req, res) => {
+    const { email, password } = req.body;
+
+    const user = await Customer.findOne({ email });
+
+    if (!user) {
+        req.session.error = "Invalid email";
+        return res.redirect('/user/login');
     }
 
-    const user = new UserModel({
-        email: req.body.email,
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        password: req.body.password
+    const isMatch = await bcrypt.compare(password, user.password);
+
+    if (!isMatch) {
+        req.session.error = "Invalid password";
+        return res.redirect('/user/login');
+    }
+
+    req.session.isAuth = true;
+    req.session.firstName = user.firstName;
+    req.session.lastName = user.lastName;
+    res.redirect('/user');
+};
+
+exports.signup_get = async (req, res) => {
+    const error = req.session.error;
+    delete req.session.error;
+    res.render(path.resolve('./views/userPage/signup.ejs'), { err: error });
+};
+
+exports.signup_post = async (req, res) => {
+    const { firstName, lastName, email, password } = req.body
+
+    if (!firstName && !lastName && !email && !password) {
+        req.session.error = "Content empty!";
+        return res.redirect('/user/signup');
+    }
+
+    let seller = await Seller.findOne({email})
+    let customer = await Customer.findOne({email})
+    let manager = await Manager.findOne({email})
+
+    if (seller || customer || manager) {
+        req.session.error = "Email taken!";
+        return res.redirect('/user/signup');
+    }
+
+    const hashPsw = await bcrypt.hash(password, 12);
+
+    customer = new Customer({
+        firstName,
+        lastName,
+        email,
+        password: hashPsw,
     });
 
-    await user.save().then(data => {
-        res.render(path.resolve('./views/profile.ejs'), {user: data, esim:data.firstName, familia:data.lastName, pochta:data.email});
-    }).catch(err => {
-        res.status(500).send({
-            message: err.message || "Some error occurred while creating user"
-        });
-    });
+    await customer.save();
+    res.redirect('/user/login');
 };
-// Retrieve all users from the database.
-exports.findAll = async (req, res) => {
-    try {
-        const user = await UserModel.find();
-        res.status(200).json(user);
-    } catch(error) {
-        res.status(404).json({message: error.message});
-    }
-};
-// Find a single User with an id
-exports.findOne = async (req, res) => {
-    try {
-        const user = await UserModel.findById(req.params.id);
-        res.status(200).json(user);
-    } catch(error) {
-        res.status(404).json({ message: error.message});
-    }
-};
-// Update a user by the id in the request
-exports.update = async (req, res) => {
-    if(!req.body) {
-        res.status(400).send({
-            message: "Data to update can not be empty!"
-        });
-    }
 
-    const id = req.params.id;
-
-    await UserModel.findByIdAndUpdate(id, req.body, { useFindAndModify: false }).then(data => {
-        if (!data) {
-            res.status(404).send({
-                message: `User not found.`
-            });
-        }else{
-            res.send({ message: "User updated successfully." })
-        }
-    }).catch(err => {
-        res.status(500).send({
-            message: err.message
-        });
-    });
-};
-// Delete a user with the specified id in the request
-exports.destroy = async (req, res) => {
-    await UserModel.findByIdAndRemove(req.params.id).then(data => {
-        if (!data) {
-            res.status(404).send({
-                message: `User not found.`
-            });
-        } else {
-            res.send({
-                message: "User deleted successfully!"
-            });
-        }
-    }).catch(err => {
-        res.status(500).send({
-            message: err.message
-        });
+exports.logout_post = async (req, res) => {
+    req.session.destroy((err) => {
+        if (err) throw err;
+        res.redirect('/user/login');
     });
 };
