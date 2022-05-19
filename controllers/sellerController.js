@@ -72,6 +72,6 @@ exports.signup_post = async (req, res) => {
 exports.logout_post = async (req, res) => {
     req.session.destroy((err) => {
         if (err) throw err;
-        res.redirect('/seller/login');
+        res.redirect('/');
     });
 };

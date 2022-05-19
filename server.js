@@ -30,15 +30,16 @@ app.use(
 app.use('/manager', require("./routes/managerRoutes"))
 app.use('/user', require("./routes/userRoutes"))
 app.use('/seller', require("./routes/sellerRoutes"))
-app.get('/landing', (req, res) =>
+app.get('/', (req, res) =>
     res.render(path.resolve('./views/landing.ejs'))
 )
 
+
 let port = process.env.PORT;
 if (port == null || port == "") {
-    port = 8000;
+    port = 3000;
 }
 
 app.listen(port,() =>
-    console.log(`App listening at http://localhost:${port}/landing`)
+    console.log(`App listening at http://localhost:${port}`)
 )
