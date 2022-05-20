@@ -1,5 +1,6 @@
 const express = require("express")
-const session = require("express-session")
+const session = require("express-session");
+const methodOverride=require("method-override");
 const MongoDBStore = require("connect-mongodb-session")(session);
 const bodyParser = require("body-parser")
 const connectDB = require("./config/db");
@@ -17,6 +18,7 @@ const store = new MongoDBStore({
 
 app.set('view engine','ejs')
 app.use(express.static('public'))
+app.use(methodOverride("_method"))
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(
     session({

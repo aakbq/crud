@@ -33,9 +33,9 @@ router
 router
     .route('/update')
     .get(isAuth, managerPageController.update_get)
-    .post(isAuth, managerPageController.update_patch)
+    .patch(isAuth, managerPageController.update_patch)
 router
     .route('/delete')
     .get(isAuth, managerPageController.delete_get)
-    .post(isAuth, managerPageController.delete_post)
+    .delete(isAuth, managerPageController.delete_post)
 module.exports = router
