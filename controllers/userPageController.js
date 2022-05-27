@@ -1,5 +1,9 @@
 const path = require("path")
 const https = require("https");
+const Product = require("../models/productModel");
+const Customer = require("../models/userModel");
+const bcrypt = require("bcryptjs");
+const Seller = require("../models/sellerModel");
 
 exports.about_get = async (req, res) => {
     res.render(path.resolve('./views/userPage/about.ejs'))
@@ -29,5 +33,44 @@ exports.products_post = async (req, res) => {
 };
 
 exports.profile_get = async (req, res) => {
-    res.render(path.resolve('./views/userPage/profile.ejs'), {user: null, esim:null, familia:null, pochta:null});
+    res.render(path.resolve('./views/userPage/profile.ejs'), {firstName:req.session.firstName, lastName:req.session.lastName, email:req.session.email});
+};
+
+exports.update_get = async (req, res) => {
+    const error = req.session.error;
+    delete req.session.error;
+    res.render(path.resolve('./views/userPage/update.ejs'), {err: error, oldSeller: null, newSeller: null});
+};
+
+exports.update_patch = async (req, res) => {
+    const {currEmail, firstName, lastName, email, password} = req.body
+
+    if (!currEmail && !firstName && !lastName && !email && !password) {
+        req.session.error = "Content empty!";
+        return res.redirect('/user/update');
+    }
+
+    const hashPsw = await bcrypt.hash(password, 11);
+
+    let user = new Customer({
+        firstName,
+        lastName,
+        email,
+        password: hashPsw,
+    });
+    await Customer.findOneAndUpdate({email: currEmail}, {
+        firstName,
+        lastName,
+        email,
+        password: hashPsw,
+    }).then(data => {
+        if (!data) {
+            return res.redirect('/user/update');
+        } else {
+            req.session.firstName=firstName;
+            req.session.lastName=lastName;
+            req.session.email=email;
+            res.render(path.resolve('./views/userPage/profile.ejs'), {err: null, firstName: req.session.firstName, lastName:req.session.lastName, email:req.session.email});
+        }
+    })
 };

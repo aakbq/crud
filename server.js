@@ -1,12 +1,18 @@
-const express = require("express")
-const session = require("express-session");
+const swaggerUI=require("swagger-ui-express");
+swaggerDocument=require('./swagger.json');
+
+const express = require("express");
+const bodyParser = require("body-parser");
+const path = require("path");
 const methodOverride=require("method-override");
+
+const session = require("express-session");
 const MongoDBStore = require("connect-mongodb-session")(session);
-const bodyParser = require("body-parser")
 const connectDB = require("./config/db");
 const config = require("./config/db.config");
-const path = require("path");
 const mongoURI = config.url;
+require('dotenv').config();
+
 const app = express();
 
 connectDB().then(() => console.log("Database Connected Successfully!!"))
@@ -18,16 +24,17 @@ const store = new MongoDBStore({
 
 app.set('view engine','ejs')
 app.use(express.static('public'))
-app.use(methodOverride("_method"))
-app.use(bodyParser.urlencoded({extended: true}))
 app.use(
     session({
-        secret: 'secret',
+        secret: process.env.SECRET,
         resave: false,
         saveUninitialized: false,
         store: store,
     })
-) //stores the session
+);
+app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocument))
+app.use(methodOverride("_method"))
+app.use(bodyParser.urlencoded({extended: true}))
 
 app.use('/manager', require("./routes/managerRoutes"))
 app.use('/user', require("./routes/userRoutes"))

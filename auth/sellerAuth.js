@@ -1,8 +1,8 @@
 module.exports = (req, res, next) => {
-    if(req.session.isAuth){
+    if(req.session.isSeller){
         next();
     }else{
         req.session.error="You have to log in first";
-        res.redirect('/user/login');
+        res.redirect('/seller/login');
     }
 };

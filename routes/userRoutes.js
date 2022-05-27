@@ -32,4 +32,8 @@ router
 router
     .route('/about')
     .get(isAuth, userPageController.about_get)
+router
+    .route('/update')
+    .get(isAuth, userPageController.update_get)
+    .patch(isAuth, userPageController.update_patch)
 module.exports = router

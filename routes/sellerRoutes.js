@@ -2,7 +2,7 @@ const express = require('express')
 const path = require("path")
 const sellerController = require(path.resolve("./controllers/sellerController"))
 const sellerPageController = require(path.resolve("./controllers/sellerPageController"))
-const isAuth = require(path.resolve("./auth/auth"))
+const isSeller = require(path.resolve("./auth/sellerAuth"))
 const router = express.Router();
 
 // seller login stuff
@@ -21,21 +21,21 @@ router
 // seller page stuff
 router
     .route('/')
-    .get(isAuth, sellerPageController.create_get)
-    .post(isAuth, sellerPageController.create_post)
+    .get(isSeller, sellerPageController.create_get)
+    .post(isSeller, sellerPageController.create_post)
 router
     .route('/read')
-    .get(isAuth, sellerPageController.read_get)
+    .get(isSeller, sellerPageController.read_get)
 router
     .route('/find')
-    .get(isAuth, sellerPageController.find_get)
-    .post(isAuth, sellerPageController.find_post)
+    .get(isSeller, sellerPageController.find_get)
+    .post(isSeller, sellerPageController.find_post)
 router
     .route('/update')
-    .get(isAuth, sellerPageController.update_get)
-    .patch(isAuth, sellerPageController.update_patch)
+    .get(isSeller, sellerPageController.update_get)
+    .patch(isSeller, sellerPageController.update_patch)
 router
     .route('/delete')
-    .get(isAuth, sellerPageController.delete_get)
-    .delete(isAuth, sellerPageController.delete_post)
+    .get(isSeller, sellerPageController.delete_get)
+    .delete(isSeller, sellerPageController.delete_post)
 module.exports = router

@@ -1,0 +1,670 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "REVO Project CRUD",
+    "description": "REVO Project Application API",
+    "license": {
+      "name": "AITU",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000",
+      "description": "Development server"
+    }
+  ],
+  "host": "localhost:3000",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "Users",
+      "description": "API for users in the system"
+    }
+  ],
+  "schemes": ["http"],
+  "consumes": ["ejs"],
+  "produces": ["ejs"],
+  "paths": {
+    "/seller": {
+      "post": {
+        "tags": ["Product"],
+        "description": "Create new product in system",
+        "parameters": [
+          {
+            "name": "product",
+            "in": "body",
+            "description": "Product that we want to create",
+            "schema": {
+              "$ref": "#/definitions/Product"
+            }
+          }
+        ],
+        "produces": [
+          "ejs"
+        ],
+        "responses": {
+          "200": {
+            "description": "New product is created",
+            "schema": {
+              "$ref": "#/definitions/Product"
+            }
+          },
+          "409": {
+            "description": "Database error"
+          }
+        }
+      }
+    },
+    "/seller/read": {
+      "get": {
+        "tags": ["Product"],
+        "summary": "Get all products in system",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Products"
+            }
+          }
+        }
+      }
+    },
+    "/seller/find": {
+      "get": {
+        "tags": ["Product"],
+        "summary": "Get product you want to find in system",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Product"
+            }
+          }
+        }
+      }
+    },
+    "/seller/update": {
+      "patch": {
+        "tags": ["Product"],
+        "description": "Update existing product in system",
+        "parameters": [
+          {
+            "name": "product",
+            "in": "body",
+            "description": "Product that we want to update",
+            "schema": {
+              "$ref": "#/definitions/Product"
+            }
+          }
+        ],
+        "produces": [
+          "ejs"
+        ],
+        "responses": {
+          "200": {
+            "description": "Existing product is updated",
+            "schema": {
+              "$ref": "#/definitions/Product"
+            }
+          },
+          "409": {
+            "description": "Database error"
+          }
+        }
+      }
+    },
+    "/seller/delete": {
+      "delete": {
+        "tags": ["Product"],
+        "description": "Delete existing product in system",
+        "parameters": [
+          {
+            "name": "product",
+            "in": "body",
+            "description": "Product that we want to delete",
+            "schema": {
+              "$ref": "#/definitions/Product"
+            }
+          }
+        ],
+        "produces": [
+          "ejs"
+        ],
+        "responses": {
+          "200": {
+            "description": "Existing product is deleted",
+            "schema": {
+              "$ref": "#/definitions/Product"
+            }
+          },
+          "409": {
+            "description": "Database error"
+          }
+        }
+      }
+    },
+    "/seller/login": {
+      "post": {
+        "tags": ["Seller"],
+        "description": "Let existing seller log in to the system",
+        "parameters": [
+          {
+            "name": "email",
+            "in": "body",
+            "type": "string",
+            "description": "Seller's email",
+            "defaultValue": ""
+          },
+          {
+            "name": "password",
+            "in": "body",
+            "type": "string",
+            "description": "Seller's password",
+            "defaultValue": ""
+          }
+        ],
+        "produces": [
+          "ejs"
+        ],
+        "responses": {
+          "200": {
+            "description": "Seller is logged in",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "409": {
+            "description": "Database error"
+          }
+        }
+      }
+    },
+    "/seller/logout": {
+      "post": {
+        "tags": ["Seller"],
+        "description": "Let seller log out from the system",
+        "parameters": [],
+        "produces": [
+          "ejs"
+        ],
+        "responses": {
+          "200": {
+            "description": "Seller is logged out"
+          },
+          "409": {
+            "description": "Database error"
+          }
+        }
+      }
+    },
+    "/seller/signup": {
+      "post": {
+        "tags": ["Seller"],
+        "description": "Let new seller sign up to the system",
+        "parameters": [
+          {
+            "name": "seller",
+            "in": "body",
+            "description": "Seller that we want to sign up",
+            "schema": {
+              "$ref": "#/definitions/Seller"
+            }
+          }
+        ],
+        "produces": [
+          "ejs"
+        ],
+        "responses": {
+          "200": {
+            "description": "Seller is signed up",
+            "schema": {
+              "$ref": "#/definitions/Seller"
+            }
+          },
+          "409": {
+            "description": "Database error"
+          }
+        }
+      }
+    },
+    "/manager": {
+      "post": {
+        "tags": ["Seller"],
+        "description": "Create new manager in system",
+        "parameters": [
+          {
+            "name": "manager",
+            "in": "body",
+            "description": "Seller that we want to create",
+            "schema": {
+              "$ref": "#/definitions/Seller"
+            }
+          }
+        ],
+        "produces": [
+          "ejs"
+        ],
+        "responses": {
+          "200": {
+            "description": "New seller is created",
+            "schema": {
+              "$ref": "#/definitions/Seller"
+            }
+          },
+          "409": {
+            "description": "Database error"
+          }
+        }
+      }
+    },
+    "/manager/read": {
+      "get": {
+        "tags": ["Seller"],
+        "summary": "Get all sellers in system",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Sellers"
+            }
+          }
+        }
+      }
+    },
+    "/manager/find": {
+      "get": {
+        "tags": ["Seller"],
+        "summary": "Get seller you want to find in system",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Seller"
+            }
+          }
+        }
+      }
+    },
+    "/manager/update": {
+      "patch": {
+        "tags": ["Seller"],
+        "description": "Update existing seller in system",
+        "parameters": [
+          {
+            "name": "seller",
+            "in": "body",
+            "description": "Seller that we want to update",
+            "schema": {
+              "$ref": "#/definitions/Seller"
+            }
+          }
+        ],
+        "produces": [
+          "ejs"
+        ],
+        "responses": {
+          "200": {
+            "description": "Existing seller is updated",
+            "schema": {
+              "$ref": "#/definitions/Seller"
+            }
+          },
+          "409": {
+            "description": "Database error"
+          }
+        }
+      }
+    },
+    "/manager/delete": {
+      "delete": {
+        "tags": ["Seller"],
+        "description": "Delete existing seller in system",
+        "parameters": [
+          {
+            "name": "seller",
+            "in": "body",
+            "description": "Seller that we want to delete",
+            "schema": {
+              "$ref": "#/definitions/Seller"
+            }
+          }
+        ],
+        "produces": [
+          "ejs"
+        ],
+        "responses": {
+          "200": {
+            "description": "Existing seller is deleted",
+            "schema": {
+              "$ref": "#/definitions/Seller"
+            }
+          },
+          "409": {
+            "description": "Database error"
+          }
+        }
+      }
+    },
+    "/manager/login": {
+      "post": {
+        "tags": ["Manager"],
+        "description": "Let existing manager log in to the system",
+        "parameters": [
+          {
+            "name": "email",
+            "in": "body",
+            "type": "string",
+            "description": "Manager's email",
+            "defaultValue": ""
+          },
+          {
+            "name": "password",
+            "in": "body",
+            "type": "string",
+            "description": "Manager's password",
+            "defaultValue": ""
+          }
+        ],
+        "produces": [
+          "ejs"
+        ],
+        "responses": {
+          "200": {
+            "description": "Manager is logged in",
+            "schema": {
+              "$ref": "#/definitions/Manager"
+            }
+          },
+          "409": {
+            "description": "Database error"
+          }
+        }
+      }
+    },
+    "/manager/logout": {
+      "post": {
+        "tags": ["Manager"],
+        "description": "Let manager log out from the system",
+        "parameters": [],
+        "produces": [
+          "ejs"
+        ],
+        "responses": {
+          "200": {
+            "description": "Manager is logged out"
+          },
+          "409": {
+            "description": "Database error"
+          }
+        }
+      }
+    },
+    "/manager/signup": {
+      "post": {
+        "tags": ["Manager"],
+        "description": "Let new manager sign up to the system",
+        "parameters": [
+          {
+            "name": "manager",
+            "in": "body",
+            "description": "Manager that we want to sign up",
+            "schema": {
+              "$ref": "#/definitions/Manager"
+            }
+          }
+        ],
+        "produces": [
+          "ejs"
+        ],
+        "responses": {
+          "200": {
+            "description": "Manager is signed up",
+            "schema": {
+              "$ref": "#/definitions/Manager"
+            }
+          },
+          "409": {
+            "description": "Database error"
+          }
+        }
+      }
+    },
+    "/user/update": {
+      "patch": {
+        "tags": ["User"],
+        "description": "Update existing user in system",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "User that we want to update",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "produces": [
+          "ejs"
+        ],
+        "responses": {
+          "200": {
+            "description": "Existing user is updated",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "409": {
+            "description": "Database error"
+          }
+        }
+      }
+    },
+    "/user/products": {
+      "post": {
+        "tags": ["Currency"],
+        "description": "Change currency",
+        "parameters": [
+          {
+            "name": "currency",
+            "in": "body",
+            "type": "string",
+            "description": "Currency user want to use",
+            "defaultValue": ""
+          }
+        ],
+        "produces": [
+          "ejs"
+        ],
+        "responses": {
+          "200": {
+            "description": "Currency was changed"
+          },
+          "409": {
+            "description": "API error"
+          }
+        }
+      }
+    },
+    "/user/login": {
+      "post": {
+        "tags": ["User"],
+        "description": "Let existing customer log in to the system",
+        "parameters": [
+          {
+            "name": "email",
+            "in": "body",
+            "type": "string",
+            "description": "Customer's email",
+            "defaultValue": ""
+          },
+          {
+            "name": "password",
+            "in": "body",
+            "type": "string",
+            "description": "Customer's password",
+            "defaultValue": ""
+          }
+        ],
+        "produces": [
+          "ejs"
+        ],
+        "responses": {
+          "200": {
+            "description": "Customer is logged in",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "409": {
+            "description": "Database error"
+          }
+        }
+      }
+    },
+    "/user/logout": {
+      "post": {
+        "tags": ["User"],
+        "description": "Let customer log out from the system",
+        "parameters": [],
+        "produces": [
+          "ejs"
+        ],
+        "responses": {
+          "200": {
+            "description": "Customer is logged out"
+          },
+          "409": {
+            "description": "Database error"
+          }
+        }
+      }
+    },
+    "/user/signup": {
+      "post": {
+        "tags": ["User"],
+        "description": "Let new customer sign up to the system",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "Customer that we want to sign up",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "produces": [
+          "ejs"
+        ],
+        "responses": {
+          "200": {
+            "description": "Customer is signed up",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "409": {
+            "description": "Database error"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "User": {
+      "required": ["email", "password"],
+      "properties": {
+        "email": {
+          "type": "string",
+          "uniqueItems": true
+        },
+        "firstName": {
+          "type": "string",
+          "default": ""
+        },
+        "lastName": {
+          "type": "string",
+          "default": ""
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "Users": {
+      "type": "array",
+      "$ref": "#/definitions/User"
+    },
+    "Seller": {
+      "required": ["email", "password"],
+      "properties": {
+        "email": {
+          "type": "string",
+          "uniqueItems": true
+        },
+        "firstName": {
+          "type": "string",
+          "default": ""
+        },
+        "lastName": {
+          "type": "string",
+          "default": ""
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "Sellers": {
+      "type": "array",
+      "$ref": "#/definitions/Seller"
+    },
+    "Manager": {
+      "required": ["email", "password"],
+      "properties": {
+        "email": {
+          "type": "string",
+          "uniqueItems": true
+        },
+        "firstName": {
+          "type": "string",
+          "default": ""
+        },
+        "lastName": {
+          "type": "string",
+          "default": ""
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "Managers": {
+      "type": "array",
+      "$ref": "#/definitions/Manager"
+    },
+    "Product": {
+      "required": ["name", "price", "quantity"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "default": ""
+        },
+        "price": {
+          "type": "string",
+          "default": ""
+        },
+        "quantity": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    },
+    "Products": {
+      "type": "array",
+      "$ref": "#/definitions/Product"
+    }
+  }
+}

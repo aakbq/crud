@@ -27,7 +27,9 @@ exports.login_post = async (req, res) => {
         return res.redirect('/seller/login');
     }
 
-    req.session.isAuth = true;
+    req.session.isAuth = false;
+    req.session.isSeller=true;
+    req.session.isManager=false;
     req.session.firstName = user.firstName;
     req.session.lastName = user.lastName;
     res.redirect('/seller');

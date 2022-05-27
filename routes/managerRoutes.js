@@ -2,7 +2,7 @@ const express = require('express')
 const path = require("path")
 const managerController = require(path.resolve("./controllers/managerController"))
 const managerPageController = require(path.resolve("./controllers/managerPageController"))
-const isAuth = require(path.resolve("./auth/auth"))
+const isManager = require(path.resolve("./auth/managerAuth"))
 const router = express.Router();
 
 // manager login stuff
@@ -21,21 +21,21 @@ router
 // manager page stuff
 router
     .route('/')
-    .get(isAuth, managerPageController.create_get)
-    .post(isAuth, managerPageController.create_post)
+    .get(isManager, managerPageController.create_get)
+    .post(isManager, managerPageController.create_post)
 router
     .route('/read')
-    .get(isAuth, managerPageController.read_get)
+    .get(isManager, managerPageController.read_get)
 router
     .route('/find')
-    .get(isAuth, managerPageController.find_get)
-    .post(isAuth, managerPageController.find_post)
+    .get(isManager, managerPageController.find_get)
+    .post(isManager, managerPageController.find_post)
 router
     .route('/update')
-    .get(isAuth, managerPageController.update_get)
-    .patch(isAuth, managerPageController.update_patch)
+    .get(isManager, managerPageController.update_get)
+    .patch(isManager, managerPageController.update_patch)
 router
     .route('/delete')
-    .get(isAuth, managerPageController.delete_get)
-    .delete(isAuth, managerPageController.delete_post)
+    .get(isManager, managerPageController.delete_get)
+    .delete(isManager, managerPageController.delete_post)
 module.exports = router
