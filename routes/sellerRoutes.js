@@ -13,10 +13,6 @@ router
 router
     .route('/logout')
     .post(sellerController.logout_post)
-router
-    .route('/signup')
-    .get(sellerController.signup_get)
-    .post(sellerController.signup_post)
 
 // seller page stuff
 router

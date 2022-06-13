@@ -72,6 +72,13 @@ exports.signup_post = async (req, res) => {
 exports.logout_post = async (req, res) => {
     req.session.destroy((err) => {
         if (err) throw err;
-        res.redirect('/user/login');
+        res.redirect('/');
     });
 };
+
+// exports.logout_post = async (req, res, next) => {
+//     req.logout(function(err) {
+//         if (err) { return next(err); }
+//         res.redirect('/');
+//     });
+// };

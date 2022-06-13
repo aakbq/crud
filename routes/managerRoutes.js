@@ -13,10 +13,6 @@ router
 router
     .route('/logout')
     .post(managerController.logout_post)
-router
-    .route('/signup')
-    .get(managerController.signup_get)
-    .post(managerController.signup_post)
 
 // manager page stuff
 router

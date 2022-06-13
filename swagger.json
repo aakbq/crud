@@ -199,36 +199,6 @@
         }
       }
     },
-    "/seller/signup": {
-      "post": {
-        "tags": ["Seller"],
-        "description": "Let new seller sign up to the system",
-        "parameters": [
-          {
-            "name": "seller",
-            "in": "body",
-            "description": "Seller that we want to sign up",
-            "schema": {
-              "$ref": "#/definitions/Seller"
-            }
-          }
-        ],
-        "produces": [
-          "ejs"
-        ],
-        "responses": {
-          "200": {
-            "description": "Seller is signed up",
-            "schema": {
-              "$ref": "#/definitions/Seller"
-            }
-          },
-          "409": {
-            "description": "Database error"
-          }
-        }
-      }
-    },
     "/manager": {
       "post": {
         "tags": ["Seller"],
@@ -394,36 +364,6 @@
         "responses": {
           "200": {
             "description": "Manager is logged out"
-          },
-          "409": {
-            "description": "Database error"
-          }
-        }
-      }
-    },
-    "/manager/signup": {
-      "post": {
-        "tags": ["Manager"],
-        "description": "Let new manager sign up to the system",
-        "parameters": [
-          {
-            "name": "manager",
-            "in": "body",
-            "description": "Manager that we want to sign up",
-            "schema": {
-              "$ref": "#/definitions/Manager"
-            }
-          }
-        ],
-        "produces": [
-          "ejs"
-        ],
-        "responses": {
-          "200": {
-            "description": "Manager is signed up",
-            "schema": {
-              "$ref": "#/definitions/Manager"
-            }
           },
           "409": {
             "description": "Database error"
